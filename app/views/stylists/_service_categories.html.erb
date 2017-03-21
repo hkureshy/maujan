@@ -1,0 +1,9 @@
+<label class="control-label col-sm-4">Service Category</label>
+<div class="col-sm-6">
+	<select name="stylist[service_category_id]" id="service_category_id" class= "form-control input-md bgbray">
+		<option value="">Select Category</option>
+		<% @service_categories.each do |category| %>
+		    <option value="<%= category.id %>"><%= category.category %></option>
+		<% end %>
+	</select>
+</div>

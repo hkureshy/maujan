@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @booking.branch_id %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @booking.area %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @booking.city %>
+</p>
+
+<p>
+  <strong>Service name:</strong>
+  <%= @booking.service_name %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @booking.count %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @booking.price %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @booking.total_amount %>
+</p>
+
+<p>
+  <strong>Booking date:</strong>
+  <%= @booking.booking_date %>
+</p>
+
+<p>
+  <strong>Booking time:</strong>
+  <%= @booking.booking_time %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

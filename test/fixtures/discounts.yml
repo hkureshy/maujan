@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service_id: 1
+  discount_percent: 1.5
+  discount_date: 2017-02-01
+  discount_time: 2017-02-01 22:28:17
+
+two:
+  service_id: 1
+  discount_percent: 1.5
+  discount_date: 2017-02-01
+  discount_time: 2017-02-01 22:28:17

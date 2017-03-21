@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  branch_id: 1
+  area: MyString
+  city: MyString
+  service_name: MyString
+  count: 1
+  price: 1.5
+  total_amount: 1.5
+  booking_date: 2017-02-01
+  booking_time: 2017-02-01 22:35:30
+
+two:
+  branch_id: 1
+  area: MyString
+  city: MyString
+  service_name: MyString
+  count: 1
+  price: 1.5
+  total_amount: 1.5
+  booking_date: 2017-02-01
+  booking_time: 2017-02-01 22:35:30

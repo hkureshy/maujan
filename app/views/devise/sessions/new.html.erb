@@ -1,0 +1,52 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
+  <div class="container container-table">
+    <div class="row vertical-center-row">
+      <div class="text-center col-md-4 col-md-offset-4">
+        <div class="panel panel-default signin-panel">
+
+          <div class="col-sm-12">
+            <div id="logo">
+              <h1>ADMIN PANEL</h1>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <%# flash.each do |key, value| %>
+              <!-- <div class="alert-danger <%#= key %>"> -->
+                <!-- <a href="#" data-dismiss="alert" class="close">×</a> -->
+                <%#= value %>
+              <!-- </div> -->
+            <%# end %>
+
+            <div class="form-group">
+              <div class="col-sm-12 field">
+                <%= f.email_field :email, class: "form-control input-lg", placeholder: "Email" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12 field">
+                <%= f.password_field :password, class: "form-control input-lg", placeholder: "Password", id: "password" %>
+              </div>
+            </div>
+
+            <%# if devise_mapping.rememberable? -%>
+              <!-- <div class="field"> -->
+                <%#= f.check_box :remember_me %>
+                <%#= f.label :remember_me %>
+              <!-- </div> -->
+            <%# end -%>
+
+            <div class="form-group last">
+              <div class="col-sm-12 actions">
+                <%= f.submit "Log in", class: "btn btn-lg btn-block bgblue" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

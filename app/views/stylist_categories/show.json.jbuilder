@@ -1,0 +1,1 @@
+json.partial! "stylist_categories/stylist_category", stylist_category: @stylist_category

@@ -1,0 +1,9 @@
+<label class="control-label col-sm-4">Service</label>
+<div class="col-sm-6">
+	<select name="discount[service_id]" id="service_category_id" class= "form-control input-md bgbray">
+		<option value="">Select Service</option>
+		<% @services.each do |service| %>
+		    <option value="<%= service.id %>"><%= service.service_name %></option>
+		<% end %>
+	</select>
+</div>

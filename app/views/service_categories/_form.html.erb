@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for(@service_category) do |f| %>
+  <% if @service_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@service_category.errors.count, "error") %> prohibited this service_category from being saved:</h2>
+
+      <ul>
+      <% @service_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group category_salon_field">
+    <label class="control-label col-sm-4">Salon Name</label>
+    <div class="col-sm-6">
+      <%= f.select(:salon_id, @salons.collect { |i| [ i.salon_name, i.id ] },{  prompt: "Select Salon"}, {:class => 'form-control input-md bgbray', :id => 'salon_select'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group branch_field">
+    <label class="control-label col-sm-4">Branch Name</label>
+    <div class="col-sm-6">
+      <%= f.select(:branch_id, @salons.first.branches.collect { |i| [ i.name, i.id ] },{prompt: "Select Branch"}, {:class => 'form-control input-md bgbray'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Category</label>
+    <div class="col-sm-6">
+      <%= f.text_field :category, class:"form-control input-md bgbray", required: "required" %>
+    </div>
+  </div>
+  
+  <div class="actions form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <%= f.submit "Create", class:"btn btn-block bgblue nextBtn btn-md pull-right margin-top" %>
+    </div>
+  </div>
+<% end %>

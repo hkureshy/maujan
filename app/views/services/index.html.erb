@@ -1,0 +1,231 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="center">
+        <h1 id="orange-head"><%= @branch.salon.salon_name %></h1>
+      </div>
+
+      <hr id="hr">
+
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <% @service_categories.each do |category| %>
+            <%= link_to category.category, services_path(branch_id: params[:branch_id],service_category_id: category.id), class: "btn btn-default btn-cat btn-sm col-md-1 col-sm-3 col-xs-3 button-border button-border-color", id: "margin-around" %>
+          <% end %>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+          <div class="stylist col-md-2 col-xs-12">
+            <p id="stylist-head">Choose your Stylist</p>
+            <% @stylist_categories.each do |stylist_category| %>
+              <%= link_to stylist_category.category, services_path(branch_id: params[:branch_id], stylist_category_id: stylist_category.id), class: "btn btn-default btn-cat btn-sm col-md-9 margin-top-ten button-border button-border-color" %>
+              <br>
+            <% end %>
+          </div>
+
+          <div class="services col-md-6 col-sm-12 col-xs-12" id="padding-top-zero">
+            <% @services.each_with_index do |service, index| %>
+              <div class="service-height">
+                <div class="col-md-4 font-style-service">
+                  <%= service.service_name %>
+                </div>
+                <div class="col-md-2 service-price">
+                  <% if service.discount > 0 %>
+                    <strike><%= service.price %></strike>
+                  <% else %>
+                    <%= service.price %>
+                  <% end %>
+                </div>
+                <div class="col-md-2 font-style-service discount %>">
+                  <%= @discount_price[index] %>
+                </div>
+                <div class="col-md-2">
+                  <%= service.discount %>% Off
+                </div>
+                <div class="col-md-1">
+                  <i class="mydatepicker fa fa-calendar" aria-hidden="true"></i> 
+                  <%#= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-plus") + " Add", "#", id: "btn-orange", class: "add_cart_item btn btn-default btn-xs button-border", data: { id: service.id } %>
+                </div>
+                <div class="col-md-1">
+                  <i class="fa fa-clock-o show-time" aria-hidden="true" data-id="<%= service.id %>"></i>
+                </div>
+              </div>
+              <div class="border-bottom"></div>
+            <% end %>
+          </div>
+
+          <div class="checkout col-md-4 col-sm-12 col-xs-12" id="padding-five">
+            <div class="background">
+              <div class="checkout-head">
+                <h4 id="order-head">Your Order</h4>
+              </div>
+              <div class="order-detail">
+                <div id="cart">
+                  <% if session[:services_in_cart] && !session[:services_in_cart].empty? %>
+                    <% session[:services_in_cart].uniq.each do |service| %>
+                      <%= render partial: "cart_item", locals: { :@service => Service.find(service['id']), date: service['date'], time: service['time'], discount: check_discount_on_service(service['id'], service['date'], service['time']) } %>
+                    <% end %>
+                  <% end %>
+                  <div id="customer_form" style="display: none;">
+                    <%= render partial: 'customers/form' %>
+                  </div>
+                </div>
+              </div>
+              <div class="control-group margin-top-five">
+                <label class="control control--radio">Cash on Delivery
+                  <input type="radio" name="radio" checked="checked"/>
+                  <div class="control__indicator"></div>
+                </label>
+              </div>
+              <div class="border-bottom-dotted"></div>
+              <div class="total-bill">
+                <div class="col-md-1">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-4">
+                  <p id="o-details">Order Details</p>
+                </div>
+                <div class="col-md-2">
+                  <h4 id="total">Total: </h4>
+                </div>
+                <div class="col-md-4">
+                  <h4 id="total-count"><%= @service_price_count %></h4>
+                </div>
+                <div class="col-md-1">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            <div class="checkout-button">
+              <%= link_to 'Proceed to Checkout', '#', style: "display: #{(session[:services_in_cart] && !session[:services_in_cart].empty?) ? 'block' : 'none'};", id: 'proceed_link', class: "btn btn-default col-md-12 col-sm-12 col-xs-12 button-border" %>
+            </div>
+          </div>
+            
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="book-time">
+    <div class="time-head">
+        <p>
+          Time
+        </p>
+    </div>
+    <div id="timer"></div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $('.mydatepicker').Zebra_DatePicker({
+    direction: 1,
+    "show_icon" : false//,
+    //onSelect: function(value, date) { 
+    //  alert(value); 
+    //}
+  });
+
+  var time = '';
+  var i;
+  for (var x = 10; x <= 21; x++) {// A-65, Z-90
+    for (var y = 0; y <= 30; y+=30) {
+        if (y === 0)
+          i = x + ":" + y + "0";
+        else
+          i = x + ":" + y;
+        time += '<button class="time-button">' + i + '</button>';
+    }
+  }
+  document.getElementById('timer').innerHTML = time;
+
+  <%#*$(".time-button").click(function(){%>
+      <%#*//alert($(this).text());%>
+      <%#*//$("#book-time").hide();%>
+      <%#*var time = $(this).text();%>
+      <%#*var date = $(this).parents('.service-height').find('.mydatepicker').val();%>
+      <%#*console.log("time: "+time+" - date: "+date);%>
+  <%#*});%>
+
+  $("document").ready(function () {
+      var date = '';
+      var service = '';
+      var id = 0;
+      $('.show-time').on('click', function (event) {
+         date = $(this).parents('.service-height').find('.mydatepicker').val();
+         service = $(this).parents('.service-height');
+         id = $(this).data('id');
+        $('#book-time').css('left', event.pageX + 10);
+        topPos = $('#book-time').css('top', event.pageY - 235);
+        if (topPos < 0) {
+          $('#book-time').css('top', 0);
+        }
+        else {
+          $('#book-time').css('top', event.pageY - 235);
+        }
+        $('#book-time').css('display', 'inline');
+        $("#book-time").css("position", "absolute");
+      });
+      $(".time-button").click(function(){
+          //alert($(this).text());
+          //$("#book-time").hide();
+          var time = $(this).text();
+          //var date = $(this).parents('.service-height').find('.mydatepicker').val();
+          console.log("time: "+time+" - date: "+date);
+          $('#book-time').hide();
+          if(date === ''){
+            alert("Select Date First");
+          } else {
+            //var id = $(this).data("id");
+            var val = $("#customer_booking_services").val();
+            var price = parseFloat($(service).find('.service-price strike').html());
+            var total = parseFloat($('#total-count').html());
+            $("#customer_booking_services").val(val + ',' + id);
+            $.ajax({
+                type: "GET",
+                url: "/services/"+id+"/cart_item",
+                data: {
+                  date: date,
+                  time: time
+                },
+                success: function(data) {
+                  $("#proceed_link").show();
+                  $("#cart").append(data);
+                  $('#total-count').html(price+total);
+                  date = '';
+                  id = 0;
+                }
+            });
+          }
+      });
+  });
+  
+  $(document).on('click', '.remove-from-cart', function(e) {
+    var id, service_to_remove, val;
+    id = $(this).data("service-id");
+    service_to_remove = $(this).data('service_id');
+    $(this).parents('#zero-padding').remove();
+    val = $("#customer_booking_services").val();
+    val = val.replace(',' + service_to_remove, '');
+    $.ajax({
+      type: "GET",
+      url: "/services/" + id + "/remove_cart_item"
+    });
+  });
+
+  $(document).on('click', function(e) {
+    if ( $(e.target).closest('.show-time').length ) {
+        $("#book-time").show();
+    }else if ( ! $(e.target).closest('#book-time').length ) {
+        $('#book-time').hide();
+    }
+  });
+
+
+</script>

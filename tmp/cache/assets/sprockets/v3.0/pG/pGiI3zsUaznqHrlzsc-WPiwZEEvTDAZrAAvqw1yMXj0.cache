@@ -1,0 +1,9 @@
+I"ˆ(function() {
+  (function() {
+    return $('#salon_select').change(function() {
+      return alert("gg");
+    });
+  });
+
+}).call(this);
+:ET

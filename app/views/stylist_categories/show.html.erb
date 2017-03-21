@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Salon:</strong>
+  <%= @stylist_category.salon_id %>
+</p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @stylist_category.branch_id %>
+</p>
+
+<p>
+  <strong>Service category:</strong>
+  <%= @stylist_category.service_category_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @stylist_category.category %>
+</p>
+
+<%= link_to 'Edit', edit_stylist_category_path(@stylist_category) %> |
+<%= link_to 'Back', stylist_categories_path %>

@@ -1,0 +1,131 @@
+I"(function() {
+  $(function() {
+    $(document).on('change', '.category_salon_field #salon_select', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/salons/" + id + "/get_branches",
+        success: function(data) {
+          return $(".branch_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '.service_salon_field #salon_select', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/services/" + id + "/get_branches",
+        success: function(data) {
+          return $(".branch_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '.discount_salon_field #salon_select', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/discounts/" + id + "/get_branches",
+        success: function(data) {
+          return $(".discount_branch_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '.branch_field #service_branch_id', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/services/" + id + "/get_service_categories",
+        success: function(data) {
+          return $(".category_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '.stylist_cat_branch_field #service_branch_id', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/stylist_categories/" + id + "/get_service_categories",
+        success: function(data) {
+          return $(".category_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '.stylist_cat_salon_field #salon_select', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/stylist_categories/" + id + "/get_branches",
+        success: function(data) {
+          return $(".stylist_cat_branch_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '.stylist_salon_field #salon_select', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/stylists/" + id + "/get_branches",
+        success: function(data) {
+          return $(".branch_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '.category_field #service_category_id', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/stylists/" + id + "/get_stylist_categories",
+        success: function(data) {
+          return $(".stylist_category_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '#stylist_branch_id', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/stylists/" + id + "/get_service_categories",
+        success: function(data) {
+          return $(".category_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '#discount_service_id', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/service_categories/" + id + "/get_services",
+        success: function(data) {
+          return $(".service_field").html(data);
+        }
+      });
+    });
+    return $(document).on('click', '.add_cart_item', function(e) {
+      var id;
+      id = $(this).data("id");
+      $.ajax({
+        type: "GET",
+        url: "/services/" + id + "/cart_item",
+        success: function(data) {
+          $("#proceed_link").show();
+          return $("#cart").append(data);
+        }
+      });
+      return $(document).on('click', '#proceed_link', function(e) {
+        return $('#customer_form').show();
+      });
+    });
+  });
+
+}).call(this);
+:ET

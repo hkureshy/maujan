@@ -1,0 +1,71 @@
+<div class="container">
+
+  <%= form_tag salons_path, method: :get do %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="center">
+          <h1 id="orange-head">SALONS</h1>
+        </div>
+      
+        <hr id="hr">
+
+        <div class="set-height-filers">
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+
+              <div class="form-group col-xs-12 col-sm-12 col-md-4">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-search" id="glyphicon-style"></i>
+                  </span>
+                  <%= text_field_tag :search_text, params[:search_text], placeholder: "Search", class: "form-control", id: "search"  %>
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12 col-sm-12 col-md-4">
+                <%= select_tag :search_area, options_for_select(@branches.map(&:area), params[:search_area]), prompt: 'Area', :class => "form-control", :id => "area" %>
+              </div>
+
+              <div class="form-group col-xs-12 col-sm-12 col-md-4">
+                <%= select_tag :search_city, options_for_select(@branches.map(&:city), params[:search_city]), prompt: 'City', :class => "form-control", :id => "city" %>
+              </div>
+              
+              <br>
+            </div>
+          </div>
+        </div>
+
+        <hr id="hr">
+      </div>
+    </div>
+
+  <% end %>
+
+  <div class="row">
+    <% @salons.each do |salon| %>
+
+      <div class="work-element web-design col-xs-12 col-sm-6 col-md-4">
+        <div class="work make-card">
+          <div class="salon-panel">
+            <div class="salon-name">
+              <h3 id="salon-name-style"><%= salon.salon_name %></h3>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12" id="zero-padding">
+              <%= image_tag salon.salon_img, :class => "salon-img" %>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 branches" id="padding-top-five">
+              <% salon.branches.each do |branch| %>
+                <div class="col-xs-4 col-sm-4 col-md-4" id="zero-padding">
+                  <%= link_to branch.area, services_path(branch_id: branch), :class => "button btn-branch" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>

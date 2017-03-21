@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Stylists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Branch</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stylists.each do |stylist| %>
+      <tr>
+        <td><%= stylist.branch_id %></td>
+        <td><%= stylist.name %></td>
+        <td><%= stylist.category %></td>
+        <td><%= link_to 'Show', stylist %></td>
+        <td><%= link_to 'Edit', edit_stylist_path(stylist) %></td>
+        <td><%= link_to 'Destroy', stylist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stylist', new_stylist_path %>

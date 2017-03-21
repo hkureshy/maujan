@@ -1,0 +1,545 @@
+* {
+	font-family: 'Roboto Slab', serif;
+}
+
+#bg-home {
+	margin-top: 50px;
+}
+
+.show-time {
+	position: relative;
+}
+
+/* -------------------- Date Style Override ---------------------- */
+
+.Zebra_DatePicker {
+	background: orange !important;
+    border: 1px solid orange !important;
+}
+
+.Zebra_DatePicker .dp_header .dp_caption {
+	font-weight: bold !important;
+	font-family: 'Roboto Slab', serif !important;
+}
+
+.Zebra_DatePicker .dp_daypicker th {
+	background-color: white !important;
+}
+
+.Zebra_DatePicker .dp_daypicker td, .Zebra_DatePicker .dp_daypicker th, .Zebra_DatePicker .dp_monthpicker td, .Zebra_DatePicker .dp_yearpicker td {
+	border: 2px solid orange !important;
+}
+
+.dp_hover {
+	background-color: #008CBA !important;
+}
+
+/* ------------------------ Custom Timer ------------------------- */
+
+.fa {
+  color: orange;
+  cursor: pointer;
+}
+
+.fa { transform: scale(2,1.6); }
+
+.time-head {
+  margin: 0px;
+  width: 224px;
+  background: orange;
+  height: 30px;
+}
+
+.time-head>p {
+  margin: 0px;
+  text-align:center;
+  color:white;
+  font-size: 18px;
+  line-height: 30px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.time-button {
+    width: 56px;
+    height: 35px;
+    background-color: #E8E8E8;
+    border: 1px solid orange;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    color: black;
+}
+
+.time-button:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+#timer {
+  width: 224px;
+  background: orange;
+}
+
+#book-time {
+  display: none;
+  border: 1px solid orange;
+  border-radius: 5px;
+}
+
+/* --------------------------------------------------------------- */
+
+
+#body {
+	background-color: #f9f7f7;
+}
+
+#center > h1 {
+    text-align: center;
+}
+
+.set-height-filers {
+	height: 40px;
+}
+
+#glyphicon-style {
+	color: orange;
+}
+
+input[type="search"], textarea {
+  background-color : #ebebeb;
+}
+
+#city {
+	background: #ebebeb;
+}
+
+#area {
+	background: #ebebeb;
+}
+
+#hr {
+    border: 0;
+    border-top: 1px solid #868686;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.make-card {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	border-radius: 8px;
+}
+
+.salon-panel {
+	height: 275px;
+	border-radius: 8px;
+	background-color: black;
+	margin-top: 30px;
+}
+
+.salon-name {
+	height: 40px;
+	border-radius: 8px 8px 0px 0px;
+	color: white;
+	text-align: center;
+	padding-top: 7px;
+}
+
+.date-time-font {
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.cart-set-height {
+	height: 70px;
+	line-height: 70px;
+  	vertical-align: middle;
+}
+
+.font-style-service {
+	font-weight: bold;
+}
+
+#salon-name-style {
+	margin: 0px;
+	font-weight: bold;
+}
+
+.salon-logo {
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.salon-img {
+	height: 200px;
+	width: 360px;
+}
+
+#zero-padding {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.branches {
+	background-color: #b7b7b7;
+	border-radius: 0px 0px 8px 8px;
+	height: 35px;
+	position: relative;
+}
+
+.border {
+	border-style: solid;
+	border-width: 2px;
+	border-color: white;
+	margin-top: 10px;
+	display: table;
+	height: 30px;
+}
+
+.button {
+	width: 100%;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#margin-around{
+	margin: 5px 23.5px;
+}
+
+.btn-branch {
+    background: transparent;
+    border: 1px solid white;
+}
+
+.btn-branch:hover {
+    background-color: #008CBA !important;
+    color: white !important;
+    text-decoration: none;
+}
+
+.btn-branch:visited {
+	color: white;
+}
+
+.btn-branch:focus {
+    background-color: #008CBA !important;
+    color: white !important;
+}
+
+.btn-cat {
+	color: black;
+}
+
+.btn-cat:hover {
+	background-color: #008CBA;
+    color: white !important;
+}
+
+.btn-cat:visited {
+	color: black;
+}
+
+.border > p {
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+}
+
+#child {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*Services*/
+
+#orange-head {
+	color: orange;
+	font-weight: bold;
+}
+
+#margin-right {
+	margin-right: 1%; 
+}
+
+#margin-left {
+	margin-left: 2.5%;
+	width: 10%;
+}
+
+#button-size {
+	margin-left: 1.25%;
+	width: 10%
+}
+
+.margin-top-ten {
+	margin-top: 10px;
+}
+
+#stylist-head {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.services {
+	padding-top: 15px;
+}
+
+#padding-top-zero {
+	padding-top: 0px;
+}
+
+#padding-top-five {
+	padding-top: 5px;
+}
+
+#btn-orange {
+	background-color: orange;
+	color: white;
+}
+
+.button-border {
+	border-width: 1px !important;
+	border-radius: 5px !important;
+}
+.button-border-color {
+	border-color: black !important;
+}
+
+.service-height {
+	background-color: white;
+	height: 50px;
+	padding-top: 15px;
+}
+
+.border-bottom {
+  	border-bottom:1px solid #000;
+}
+
+#padding-five {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.checkout {
+	background-color: #E8E8E8;
+	border-radius: 10px;
+	height: 380px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#order-head {
+	font-weight: bold;
+	margin-top: 10px;
+	padding-left: 15px;
+	height: 20px;
+}
+
+#sel3 {
+	background: #ebebeb;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.order-detail {
+    padding: 5px;
+    overflow-y: auto;
+    height: 250px;
+    background-color: white;
+}
+
+.cart-items .cart-item:last-child {
+    border-bottom: 0;
+}
+
+.cart-items .cart-item {
+    overflow: hidden;
+    clear: both;
+    border-bottom: 1px dotted #D51405;
+}
+
+.cart-items .cart-item .order_qty {
+    float: left;
+    position: relative;
+}
+
+.cart-items .cart-item .order_qty .qty_btn.minus {
+    top: 14px;
+}
+
+.cart-items .cart-item .order_qty #qty_btn {
+	display: inline-block;
+    background: orange;
+    color: #333;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.discount-cart-items {
+	background: red !important;
+}
+
+.cart-items {
+	background: #E8E8E8;
+}
+
+.cart-items:hover {
+  	box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 1px 1px rgba(0,0,0,0.23);
+}
+
+.valid {
+	width: 10px;
+}
+
+.add #qty_btn {
+    float: left;
+}
+
+.minus #qty_btn {
+    float: right;
+}
+
+#service-in-checkout {
+	font-size: 12px;
+	height: 35px;
+	line-height: 35px;
+    vertical-align: middle;
+    margin: 0px;
+}
+
+#service-price {
+	font-size: 10px;
+	height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    margin: 0px;
+}
+
+#sel2 {
+	background: #ebebeb;
+	height: 25px;
+	padding: 0px;
+	font-size: 11px;
+}
+
+.margin-left-five {
+	margin-left: 10px;
+}
+
+#padding-left-five {
+	padding-left: 10px;
+	padding-right: 0px;
+} 
+
+.border-bottom-dotted {
+  	border-bottom:1px dotted #000;
+  	margin-top: 5px;
+  	margin-bottom: 5px;
+}
+
+.margin-top-five {
+	margin-top: 5px;
+}
+
+.fa-arrow-left {
+	margin-top: 10px;
+	visibility: hidden;
+}
+
+.fa-arrow-right {
+	margin-top: 10px;
+	visibility: hidden;
+}
+
+#o-details {
+	font-size: 10px;
+	margin-top: 12px;
+	font-weight: bold;
+}
+
+#total {
+	font-weight: bold;
+}
+
+#total-count {
+	font-weight: bold;
+	text-align: right;
+}
+
+#proceed_link {
+	margin-top: 20px;
+	background-color: #65b94e;
+	font-weight: bold;
+	color: white;
+}
+
+/*Radio Button*/
+
+.control-group {
+	padding-left: 15px;
+	height: 30px;
+}
+
+.control {
+	display: block;
+	position: relative;
+	padding-left: 30px;
+	padding-top: 6px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: bold;
+}
+.control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+.control__indicator {
+	position: absolute;
+	top: 5px;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background: #000;
+}
+.control--radio .control__indicator {
+	border-radius: 50%;
+}
+.control input:checked ~ .control__indicator {
+	background: gray;
+}
+.control__indicator:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+.control input:checked ~ .control__indicator:after {
+	display: block;
+}
+.control--radio .control__indicator:after {
+	left: 7px;
+	top: 7px;
+	height: 6px;
+	width: 6px;
+	border-radius: 50%;
+	background: #fff;
+}
+.control--radio input:disabled ~ .control__indicator:after {
+	background: #7b7b7b;
+}

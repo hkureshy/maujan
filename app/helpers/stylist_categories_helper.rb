@@ -1,0 +1,2 @@
+module StylistCategoriesHelper
+end

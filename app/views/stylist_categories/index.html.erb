@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Stylist Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Salon</th>
+      <th>Branch</th>
+      <th>Service category</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stylist_categories.each do |stylist_category| %>
+      <tr>
+        <td><%= stylist_category.salon_id %></td>
+        <td><%= stylist_category.branch_id %></td>
+        <td><%= stylist_category.service_category_id %></td>
+        <td><%= stylist_category.category %></td>
+        <td><%= link_to 'Show', stylist_category %></td>
+        <td><%= link_to 'Edit', edit_stylist_category_path(stylist_category) %></td>
+        <td><%= link_to 'Destroy', stylist_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stylist category', new_stylist_category_path %>

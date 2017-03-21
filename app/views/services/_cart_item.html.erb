@@ -1,0 +1,24 @@
+<div class="form-group col-xs-12 col-sm-12 col-md-12" id="zero-padding">
+	<div class="<%= discount ? 'discount-cart-items' : '' %> cart-items">
+	  <div class="cart-item">
+	    <div class="order_qty col-md-2 cart-set-height" id="padding-left-five">
+	      <a href="#" class="add" id="qty_btn">-</a>
+	      1
+	      <a href="#" class="minus" id="qty_btn">+</a>
+	    </div>
+	    <div class="cart-item-name col-md-5 cart-set-height" id="padding-left-five">
+	      <p id="service-in-checkout" class="font-style-service"><%= @service.service_name %></p>
+	      <p id="service-price"><%= @service.discount_price %></p>
+	    </div>
+	    <div class="cart-item-price col-md-2 margin-left-five date-time-font cart-set-height" id="zero-padding">
+          <%= date %>
+	    </div>
+	    <div class="cart-item-price col-md-1 margin-left-five date-time-font cart-set-height" id="zero-padding">
+          <%= time %>
+	    </div>
+        <div class="close-btn col-md-1 cart-set-height remove-from-cart" data-service-id="<%= @service.id %>">
+	    	<i class="fa fa-trash-o" aria-hidden="true"></i>
+	    </div>
+	  </div>
+	</div>
+</div>

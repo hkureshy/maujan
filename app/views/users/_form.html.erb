@@ -1,0 +1,30 @@
+<%= form_for @user, url: users_admin_index_path, validate: true do |f| %>
+
+  <h3>Add User</h3>
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Email</label>
+    <div class="col-sm-8">
+      <%= f.email_field :email, autofocus: true, class:"form-control input-md bgbray"%>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Password</label>
+    <div class="col-sm-8">
+      <%= f.password_field :password, autocomplete: "off", class:"form-control input-md bgbray"%>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Confirm Password</label>
+    <div class="col-sm-8">
+      <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control input-md bgbray" %>
+    </div>
+  </div>
+
+  <div class="actions form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <%= f.submit "Add User", class:"btn btn-block bgblue nextBtn btn-lg pull-right"%>
+    </div>
+  </div>
+<% end %>

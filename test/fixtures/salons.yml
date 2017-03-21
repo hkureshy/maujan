@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  salon_name: MyString
+  salon_email: MyString
+  owner_email: MyString
+
+two:
+  salon_name: MyString
+  salon_email: MyString
+  owner_email: MyString

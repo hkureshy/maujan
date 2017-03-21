@@ -1,0 +1,302 @@
+/*!
+ * Start Bootstrap - The Big Picture (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+.form-group.last {
+ margin-bottom:0px;
+}
+
+html, body, .container-table {
+    height: 100%;
+}
+
+h2{
+	font-size:18px;
+	color:#28c6d2;
+	font-weight:bold;
+}
+
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*Header Start*/
+
+#logo{
+	padding: 0 0 60px 0;
+	margin:0 0 45px 0;
+	border-bottom:1px solid #dcdcdc;
+}
+
+/*Login Form Start*/
+
+.panel{
+	min-height:500px;
+}
+
+.inputblue{
+	height:44px;
+	border:1px solid #2ac6d4;
+	font-size:16px;
+	color:#c0c0c0;
+}
+
+.bgblue{
+	background-color:#2ac6d4;
+	border:none;
+	color:#fff;
+	font-weight:bold;
+}
+
+.bgblue:hover{
+	background-color:#2ac6d4;
+	border:none;
+}
+
+#wrapper {
+    padding-left: 0;
+}
+
+#page-wrapper {
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+}
+
+.huge {
+    font-size: 50px;
+    line-height: normal;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 225px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+    }
+}
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+.top-nav>li {
+    display: inline-block;
+    float: left;
+}
+
+.top-nav>li>a {
+    padding-top: 15px;
+    line-height: 20px;
+    color: #999;
+	font-weight: bold;
+    font-size: 14px;
+}
+
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    color: #fff;
+    background-color: #000;
+}
+
+.top-nav>.open>.dropdown-menu {
+    float: left;
+    position: absolute;
+    margin-top: 0;
+    border: 1px solid rgba(0,0,0,.15);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+}
+
+ul.message-dropdown {
+    padding: 0;
+    max-height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+li.message-preview {
+    width: 275px;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+li.message-preview>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+li.message-footer {
+    margin: 5px 0;
+}
+
+ul.alert-dropdown {
+    width: 200px;
+}
+
+/* Side Navigation */
+
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 50px;
+        left: 225px;
+        width: 225px;
+        margin-left: -225px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        background-color: #454545;
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+		padding-top: 20px;
+    }
+
+    .side-nav>li>a {
+        width: 225px;
+    }
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+        outline: none;
+		font-weight:bold;
+    }
+}
+
+.side-nav>li>ul {
+    padding: 0;
+}
+
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 5px 15px 5px 30px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+}
+
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+	font-size:16px;
+	color:#fff;
+	font-weight:bold;
+	padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.glyphicon-menu-down{
+	float: right;
+    font-size: 10px;
+    margin-right: 5px;
+}
+
+#page-wrapper .collapse{
+	padding:15px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+.stepwizard {
+    display: table;
+    position: relative;
+	margin:35px 0 0 0;
+}
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+.stepwizard-step {
+    display: table-cell;
+    position: relative;
+}
+
+.stepwizard-step .btn-default{
+    color: #000;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.stepwizard-step .btn-primary , .stepwizard-step .btn-primary:hover {
+    color: #2ac6d3;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.setup-content .panel {
+    padding: 0px 0 0 0;
+	min-height:none;
+}
+
+.setup-content .form-group{
+	display:table;
+	width:100%;
+}
+
+.panel-heading-blue{
+	font-size:20px;
+	color:#fff;
+	text-transform:uppercase;
+	background-color:#2ac6d3;
+	text-align: center;
+    font-weight: bold;
+    padding: 15px 0 15px 0;
+}
+
+.setup-content{
+	padding: 0px;
+    margin: 0px 0 20px 0;
+    color: #29b7c3;
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.setup-content label{
+	font-size:16px;
+	font-size: 16px;
+    line-height: 40px;
+}
+
+.bgbray{
+	background-color:#eeeeee;
+	border-radius: 0px;
+}
+
+.bottomaligned {
+	position:absolute; 
+	bottom:0;
+}
+
+
+
+
+

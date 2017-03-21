@@ -1,0 +1,18 @@
+I"€(function() {
+  $(function() {
+    return $(document).on('change', '#salon_select', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/salons/" + id + "/get_branches",
+        success: function(data) {
+          alert(data);
+          return $(".branch_field").html(data);
+        }
+      });
+    });
+  });
+
+}).call(this);
+:ET

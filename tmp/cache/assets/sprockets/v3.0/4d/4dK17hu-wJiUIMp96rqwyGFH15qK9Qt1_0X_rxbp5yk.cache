@@ -1,0 +1,38 @@
+I"Ä(function() {
+  $(function() {
+    $(document).on('change', '#salon_select', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/salons/" + id + "/get_branches",
+        success: function(data) {
+          return $(".branch_field").html(data);
+        }
+      });
+    });
+    $(document).on('change', '#service_branch_id', function(e) {
+      var id;
+      id = $(this).val();
+      return $.ajax({
+        type: "GET",
+        url: "/branches/" + id + "/get_services",
+        success: function(data) {
+          return $(".service_field").html(data);
+        }
+      });
+    });
+    return $(document).on('click', '.add_cart_item', function(e) {
+      alert($(this).data("id"));
+      return $.ajax({
+        type: "GET",
+        url: "/services/" + id + "/cart_item",
+        success: function(data) {
+          return $(".service_field").html(data);
+        }
+      });
+    });
+  });
+
+}).call(this);
+:ET

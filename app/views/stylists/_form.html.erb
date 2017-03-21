@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for(@stylist) do |f| %>
+  <% if @stylist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stylist.errors.count, "error") %> prohibited this stylist from being saved:</h2>
+
+      <ul>
+      <% @stylist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group stylist_salon_field">
+    <label class="control-label col-sm-4">Salon Name</label>
+    <div class="col-sm-6">
+      <%= f.select(:salon_id, @salons.collect { |i| [ i.salon_name, i.id ] },{  prompt: "Select Salon"}, {:class => 'form-control input-md bgbray', :id => 'salon_select'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group branch_field">
+    <label class="control-label col-sm-4">Branch Name</label>
+    <div class="col-sm-6">
+      <%= f.select(:branch_id, @salons.first.branches.collect { |i| [ i.name, i.id ] },{prompt: "Select Branch"}, {:class => 'form-control input-md bgbray'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group category_field">
+    <label class="control-label col-sm-4">Service Category</label>
+    <div class="col-sm-6">
+      <%= f.select(:service_category_id, @salons.first.branches.first.service_categories.collect { |i| [ i.category, i.id ] },{prompt: "Select Service Category"}, {:class => 'form-control input-md bgbray'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group stylist_category_field">
+    <label class="control-label col-sm-4">Stylist Category</label>
+    <div class="col-sm-6">
+      <%= f.select(:stylist_category_id, @salons.first.branches.first.service_categories.first.stylist_categories.collect { |i| [ i.category, i.id ] },{prompt: "Select Service Category"}, {:class => 'form-control input-md bgbray'})%>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Stylist Name</label>
+    <div class="col-sm-6">
+      <%= f.text_field :name , class: "form-control input-md bgbray" %>
+    </div>
+  </div>
+
+  <div class="actions form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <%= f.submit "Create", class:"btn btn-block bgblue nextBtn btn-md pull-right margin-top" %>
+    </div>
+  </div>
+<% end %>

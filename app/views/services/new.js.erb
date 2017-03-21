@@ -1,0 +1,9 @@
+$("#new_form").html("<%= escape_javascript(render partial: 'form', locals: { services: @services } ) %>");
+
+$('#salon').removeClass('active');
+$('#branch').removeClass('active');
+$('#service_category').removeClass('active');
+$('#service').addClass('active');
+$('#stylist_category').removeClass('active');
+$('#stylist').removeClass('active');
+$('#discount').removeClass('active');

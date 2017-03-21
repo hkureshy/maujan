@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for(@discount) do |f| %>
+  <% if @discount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
+
+      <ul>
+      <% @discount.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group discount_salon_field">
+    <label class="control-label col-sm-4">Salon Name</label>
+    <div class="col-sm-6">
+      <%= f.select(:salon_id, @salons.collect { |i| [ i.salon_name, i.id ] },{  prompt: "Select Salon"}, {:class => 'form-control input-md bgbray', :id => 'salon_select'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group discount_branch_field">
+    <label class="control-label col-sm-4">Branch Name</label>
+    <div class="col-sm-6">
+      <%= f.select(:branch_id, @salons.first.branches.collect { |i| [ i.name, i.id ] },{prompt: "Select Branch"}, {:class => 'form-control input-md bgbray'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group discount_category_field">
+    <label class="control-label col-sm-4">Service Category</label>
+    <div class="col-sm-6">
+      <%= f.select(:service_category_id, @salons.first.branches.first.service_categories.collect { |i| [ i.category, i.id ] },{prompt: "Select Service Category"}, {:class => 'form-control input-md bgbray'} )%>
+    </div>
+  </div>
+
+  <div class="field form-group discount_service_field">
+    <label class="control-label col-sm-4">Service</label>
+    <div class="col-sm-6">
+      <%= f.select(:service_id, @salons.first.branches.first.service_categories.first.services.collect { |i| [ i.service_name, i.id ] }, {prompt: "Select Service"}, {:class => 'form-control input-md bgbray'} ) %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Discount Percent</label>
+    <div class="col-sm-6">
+      <%= f.text_field :discount_percent, class: "form-control input-md bgbray" %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Discount Date</label>
+    <div class="col-sm-6">
+      <span class ="date-select form-control input-md bgbray">
+        <%= f.date_select :discount_date %>
+      </span>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <label class="control-label col-sm-4">Discount Time</label>
+    <div class="col-sm-6">
+      <span class ="time-select form-control input-md bgbray">
+        <%= f.time_select :discount_time %>
+      </span>
+    </div>
+  </div>
+
+  <div class="actions form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <%= f.submit "Create", class:"btn btn-block bgblue nextBtn btn-md pull-right margin-top" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  branch_id: 1
+  service_name: MyString
+  price: 1.5
+
+two:
+  branch_id: 1
+  service_name: MyString
+  price: 1.5
