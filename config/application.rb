@@ -4,6 +4,7 @@ require 'csv'
 require 'iconv'
 require 'rails/all'
 
+config.serve_static_assets = true
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
