@@ -8,9 +8,13 @@ class ServicesController < ApplicationController
   # GET /services.json
 
   def index
-
+    # session[:services_in_cart] = []
+    # session[:services_in_cart_js] = ''
     if session[:services_in_cart] && !session[:services_in_cart].empty?
-      @service_price_count = Service.where("id in (?)", session[:services_in_cart].map{|x| x['id']}).sum(:price)
+      @service_price_count = 0
+      Service.where("id in (?)", session[:services_in_cart].map{|x| x['id']}).each do |service|
+        @service_price_count += service.discount_price
+      end
     else
       @service_price_count = 0
     end

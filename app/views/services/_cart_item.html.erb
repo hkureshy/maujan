@@ -8,7 +8,7 @@
 	    </div>
 	    <div class="cart-item-name col-md-5 cart-set-height" id="padding-left-five">
 	      <p id="service-in-checkout" class="font-style-service"><%= @service.service_name %></p>
-	      <p id="service-price"><%= @service.discount_price %></p>
+	      <p id="service-price"><%= discount ? @service.price-(@service.price*((discount.to_f+@service.discount)/100)) : @service.discount_price %></p>
 	    </div>
 	    <div class="cart-item-price col-md-2 margin-left-five date-time-font cart-set-height" id="zero-padding">
           <%= date %>

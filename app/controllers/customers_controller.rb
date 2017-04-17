@@ -14,7 +14,6 @@ class CustomersController < ApplicationController
 
   # GET /customers/new
   def new
-
     @customer = Customer.new
   end
 
@@ -25,21 +24,22 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-    binding.pry
     @customer = Customer.new(customer_params)
 
     respond_to do |format|
       if @customer.save
         booking = Booking.create(customer_id: @customer.id)
-        services = session[:services_in_cart].uniq! {|e| e['id']}
+        services = Service.where('id in (?)', session[:services_in_cart].map {|e| e['id']})
         services.each do |service|
           BookingService.create(booking_id: booking.id, service_id: service['id'], booking_date: service['date'], booking_time: service['time'] )
         end
 
+        BookingMailer.send_mail(@customer).deliver
+
         session[:services_in_cart] = []
         session[:services_in_cart_js] = ''
 
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }

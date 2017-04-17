@@ -12,14 +12,38 @@ module ServicesHelper
     service_category = service.service_category
     branch = service_category.branch
     salon  = branch.salon
-    discount = Discount.find_by(salon_id: salon, branch_id: branch, service_category_id: service_category)
-    if discount
-      d_date = discount.discount_date
-      d_time = discount.discount_time
-#      d_percent = discount.discount_percent
-      d_date == date.to_date && d_time.strftime("%H-%M-%S") == time.to_time.strftime("%H-%M-%S")
-    else
-      false
+    discount_percent = false
+    discounts = Discount.where(salon_id: salon, branch_id: branch, service_category_id: service_category, service_id: service.id)
+    discounts.each do |discount|
+      if true
+        d_date = discount.discount_date
+        d_time = discount.discount_time
+  #      d_percent = discount.discount_percent
+        if d_date == date.to_date && d_time.strftime("%H-%M-%S") == time.to_time.strftime("%H-%M-%S")
+          discount_percent = discount.discount_percent
+        else
+          false
+        end
+      else
+        false
+      end
     end
+    discount_percent
+  end
+  
+  def service_discount_date(service)
+    date = []
+    service.discounts.each do |d|
+      date << d.discount_date.strftime()
+    end
+    date.join('|')
+  end
+  
+  def service_discount_time(service)
+    time = []
+    service.discounts.each do |d|
+      time << d.discount_time.strftime("%H:%M")
+    end
+    time.join('|')
   end
 end

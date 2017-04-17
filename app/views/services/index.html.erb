@@ -41,7 +41,7 @@
                     <%= service.price %>
                   <% end %>
                 </div>
-                <div class="col-md-2 font-style-service discount %>">
+                <div class="col-md-2 font-style-service discount">
                   <%= @discount_price[index] %>
                 </div>
                 <div class="col-md-2">
@@ -52,7 +52,7 @@
                   <%#= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-plus") + " Add", "#", id: "btn-orange", class: "add_cart_item btn btn-default btn-xs button-border", data: { id: service.id } %>
                 </div>
                 <div class="col-md-1">
-                  <i class="fa fa-clock-o show-time" aria-hidden="true" data-id="<%= service.id %>"></i>
+                  <i class="fa fa-clock-o show-time" aria-hidden="true" data-id="<%= service.id %>" data-d-date="<%= service_discount_date(service) %>" data-d-time="<%= service_discount_time(service) %>"></i>
                 </div>
               </div>
               <div class="border-bottom"></div>
@@ -157,22 +157,52 @@
       var date = '';
       var service = '';
       var id = 0;
+      var discount = false;
       $('.show-time').on('click', function (event) {
-         date = $(this).parents('.service-height').find('.mydatepicker').val();
-         service = $(this).parents('.service-height');
-         id = $(this).data('id');
+        $('.time-button').removeClass('discount-cart-items');
+        var d_date = $(this).data('d-date').split('|');
+        var d_time = $(this).data('d-time').split('|');
+        
+        date = $(this).parents('.service-height').find('.mydatepicker').val();
+        service = $(this).parents('.service-height');
+        id = $(this).data('id');
+        
+        var indexArray = $.map(d_date, function(elementOfArray, indexInArray) {
+                return elementOfArray === date ? indexInArray : null;
+        });
+        
+        var timeValues = [];
+        var i=0;
+        
+        while (indexArray.length > i) {
+          timeValues.push(d_time[indexArray[i]]);
+          i++;
+        }
+        
+        var date_index = d_date.indexOf(date);
+
+        if(date !== '' && date_index > -1){
+          for (var x = 0; x < 25; x++) {
+            var val = $($('.time-button')[x]).html();
+            if( timeValues.indexOf(val) > -1 ){
+              $($('.time-button')[x]).addClass('discount-cart-items');
+            } else {
+              $($('.time-button')[x]).removeClass('discount-cart-items');
+            }
+          }
+        }
+         
         $('#book-time').css('left', event.pageX + 10);
-        topPos = $('#book-time').css('top', event.pageY - 235);
-        if (topPos < 0) {
-          $('#book-time').css('top', 0);
-        }
-        else {
-          $('#book-time').css('top', event.pageY - 235);
-        }
+        $('#book-time').css('top', event.pageY - 0);
         $('#book-time').css('display', 'inline');
         $("#book-time").css("position", "absolute");
+
+
       });
       $(".time-button").click(function(){
+        if($($(this)).hasClass('discount-cart-items')){
+          discount = true;
+        }
           //alert($(this).text());
           //$("#book-time").hide();
           var time = $(this).text();
@@ -184,35 +214,64 @@
           } else {
             //var id = $(this).data("id");
             var val = $("#customer_booking_services").val();
-            var price = parseFloat($(service).find('.service-price strike').html());
+            <%#*var price = parseFloat($(service).find('.service-price strike').html());%>
+            var discounted_price = parseFloat($(service).find('.discount').html());
             var total = parseFloat($('#total-count').html());
+            var total_count = 0;
+            
+            total_count = total+discounted_price;
+            
             $("#customer_booking_services").val(val + ',' + id);
             $.ajax({
                 type: "GET",
                 url: "/services/"+id+"/cart_item",
                 data: {
                   date: date,
-                  time: time
+                  time: time,
+                  discount: discount
                 },
                 success: function(data) {
                   $("#proceed_link").show();
                   $("#cart").append(data);
-                  $('#total-count').html(price+total);
+                  $('#total-count').html(total_count);
                   date = '';
                   id = 0;
+                  discount = false;
+                  var services = $('.cart-item').length;
+                  var total = 0;
+                  for (var x = 0; x < services; x++) {
+                    total += parseFloat($($('.cart-item #service-price')[x]).html());
+                  }
+                  $('#total-count').html(total);
                 }
             });
           }
       });
   });
-  
+    
   $(document).on('click', '.remove-from-cart', function(e) {
     var id, service_to_remove, val;
     id = $(this).data("service-id");
     service_to_remove = $(this).data('service_id');
-    $(this).parents('#zero-padding').remove();
+    
     val = $("#customer_booking_services").val();
     val = val.replace(',' + service_to_remove, '');
+    
+            var price = parseFloat($(this).parents('.cart-item').find('#service-price').html());
+            var total = parseFloat($('#total-count').html());
+            var total_count = 0;
+            total_count = total-price;
+            $('#total-count').html(total_count);
+            
+            $(this).parents('#zero-padding').remove();
+            
+            var services = $('.cart-item').length;
+            var total = 0;
+            for (var x = 0; x < services; x++) {
+              total += parseFloat($($('.cart-item #service-price')[x]).html());
+            }
+            $('#total-count').html(total);
+
     $.ajax({
       type: "GET",
       url: "/services/" + id + "/remove_cart_item"

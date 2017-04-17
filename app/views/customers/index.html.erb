@@ -1,32 +1,68 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone no</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone no</th>
-    </tr>
-  </thead>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#"><img src="" alt="Maujan" title="Maujan" style="height:25px;" /></a>
+  </div>
+  
+  <ul class="nav navbar-right top-nav">
+    
+    <li><%= link_to "Users", users_admin_index_path %></li>
+    <li><%= link_to "Admin Panel", new_salon_path %></li>
+    <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 
-  <tbody>
-    <% @customers.each do |a| %>
-      <tr>
-        <td><%= a.name %></td>
-        <td><%= a.email %></td>
-        <td><%= a.phone_no %></td>
-        <% a.bookings.each do |b| %>
-          <% b.services.each do |c| %>
-            <% binding.pry %>
-            <td><%= c.service_name %></td>
-          <% end %>
-          <% b.booking_services.each do |d| %>
-            <td><%= d.booking_date %></td>
-            <td><%= d.booking_time %></td>
-          <% end %>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </ul>
+</nav>
+
+<div id="bg-home" class="">
+  <div class="row setup-content">
+    <div class="col-xs-12">
+      <div class="col-md-12">
+        <div class="panel-group margin-top">
+          <div class="panel panel-default">
+            <div class="panel-heading-blue">Bookings</div>
+            <div class="panel-body">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="col-md-2">Name</th>
+                          <th class="col-md-2">Email</th>
+                          <th class="col-md-2">Phone no</th>
+                          <th class="col-md-2">Service Name</th>
+                          <th class="col-md-1">Price</th>
+                          <th class="col-md-2">Booking Date</th>
+                          <th class="col-md-1">Booking Time</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% @customers.each do |a| %>
+                          <tr>
+                            <td class="col-md-2"><%= a.name %></td>
+                            <td class="col-md-2"><%= a.email %></td>
+                            <td class="col-md-2"><%= a.phone_no %></td>
+                            <% a.bookings.each do |b| %>
+                              <% b.services.each do |c| %>
+                                <td class="col-md-2"><%= c.service_name %></td>
+                                <td class="col-md-1"><%= c.price %></td>
+                              <% end %>
+                              <% b.booking_services.each do |d| %>
+                                <td class="col-md-2"><%= d.booking_date %></td>
+                                <td class="col-md-1"><%= d.booking_time %></td>
+                              <% end %>
+                            <% end %>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
