@@ -8,6 +8,8 @@ gem 'devise'
 
 gem 'zebra-datepicker-rails'
 
+gem 'jquery-ui-rails'
+
 gem 'glyphicons-rails'
 
 gem 'carrierwave', '~> 1.0'

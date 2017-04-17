@@ -17,3 +17,4 @@
 //= require_tree .
 //= require bootstrap
 //= require zebra-datepicker/core
+//= require jquery-ui
