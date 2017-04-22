@@ -25,6 +25,10 @@
             <% @stylist_categories.each do |stylist_category| %>
               <%= link_to stylist_category.category, services_path(branch_id: params[:branch_id], stylist_category_id: stylist_category.id), class: "btn btn-default btn-cat btn-sm col-md-9 margin-top-ten button-border button-border-color" %>
               <br>
+              <% stylist_category.stylists.each do |stylist| %>
+                <%= stylist.name %>
+              <% end %>
+              <br>
             <% end %>
           </div>
 
