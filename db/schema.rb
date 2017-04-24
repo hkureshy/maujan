@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308145454) do
+ActiveRecord::Schema.define(version: 20170423141244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20170308145454) do
   create_table "branches", force: :cascade do |t|
     t.integer  "salon_id"
     t.string   "name"
-    t.string   "city"
     t.string   "area"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "salon_email"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -65,12 +65,22 @@ ActiveRecord::Schema.define(version: 20170308145454) do
 
   create_table "salons", force: :cascade do |t|
     t.string   "salon_name"
-    t.string   "salon_email"
-    t.string   "owner_email"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "salon_img"
   end
+
+  create_table "serv_styls", force: :cascade do |t|
+    t.integer  "service_id"
+    t.integer  "stylist_id"
+    t.float    "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "serv_styls", ["service_id"], name: "index_serv_styls_on_service_id", using: :btree
+  add_index "serv_styls", ["stylist_id"], name: "index_serv_styls_on_stylist_id", using: :btree
 
   create_table "service_categories", force: :cascade do |t|
     t.string   "category"
@@ -135,4 +145,6 @@ ActiveRecord::Schema.define(version: 20170308145454) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "serv_styls", "services"
+  add_foreign_key "serv_styls", "stylists"
 end
