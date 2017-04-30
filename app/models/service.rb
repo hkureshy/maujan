@@ -6,6 +6,8 @@ class Service < ActiveRecord::Base
 	has_many :discounts
 	has_many :booking_services
 	has_many :bookings, :through => :booking_services
+  has_many :serv_styls
+  has_many :stylists, through: :serv_styls
 
 	def self.import(file)
 		spreadsheet = open_spreadsheet(file)

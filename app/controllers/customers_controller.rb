@@ -27,14 +27,39 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     respond_to do |format|
-      if @customer.save
-        booking = Booking.create(customer_id: @customer.id)
-        services = Service.where('id in (?)', session[:services_in_cart].map {|e| e['id']})
-        services.each do |service|
-          BookingService.create(booking_id: booking.id, service_id: service['id'], booking_date: service['date'], booking_time: service['time'] )
+      if params[:stylist_id]
+        stylist = Stylist.find(params[:stylist_id])
+        existing_booking_for_stylist = false
+        service_ids = session[:services_in_cart].map {|e| e['id']}
+        services = Service.where('id in (?)', service_ids)
+        
+#        service_stylist = ServStyl.where('stylist_id = ? AND service_id in (?)', params[:stylist_id], service_ids)
+        
+        stylist.services.each do |service|
+          service.booking_services.each do |booking_service|
+            services.each do |service|
+              if booking_service.service_id == service['id']
+                if service['date'] == booking_service.booking_date && service['time'] == booking_service.booking_time
+                  existing_booking_for_stylist = true
+                  break
+                end
+              end
+            end
+          end
         end
+        
+#        if service_stylist.empty? #if no service for this stylist exists
+        unless existing_booking_for_stylist #if no service for this stylist exists
+          if @customer.save
+            booking = Booking.create(customer_id: @customer.id)
+            services.each do |service|
+              BookingService.create(booking_id: booking.id, service_id: service['id'], booking_date: service['date'], booking_time: service['time'] )
+              ServStyl.create(service_id: service['id'], stylist_id: params[:stylist_id])
+            end
 
-        BookingMailer.send_mail(@customer).deliver
+            BookingMailer.send_mail(@customer).deliver
+          end
+        end
 
         session[:services_in_cart] = []
         session[:services_in_cart_js] = ''
