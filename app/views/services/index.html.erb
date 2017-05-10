@@ -32,7 +32,7 @@
               <% end %>
             <% end %>
           </div>
-
+          <div class="current-service-discount">Discount is available at hh:mm</div>
           <div class="services col-md-6 col-sm-12 col-xs-12" id="padding-top-zero">
             <% @services.each_with_index do |service, index| %>
               <div class="service-height">
@@ -163,6 +163,37 @@
       var service = '';
       var id = 0;
       var discount = false;
+      var datepicker = '';
+      $('.mydatepicker').on('click', function (event) {
+        datepicker = $(this);
+      });
+      $('.dp_daypicker').on('click', function (event) {
+        $('.current-service-discount').hide();
+        var discount_time = [];
+        var timeValues = [];
+        var i=0;
+        var d_date = datepicker.parents('.service-height').find('.show-time').data('d-date').split('|');
+        var d_time = datepicker.parents('.service-height').find('.show-time').data('d-time').split('|');
+        
+        var indexArray = $.map(d_date, function(elementOfArray, indexInArray) {
+                return elementOfArray === datepicker.val() ? indexInArray : null;
+        });
+        
+        while (indexArray.length > i) {
+          timeValues.push(d_time[indexArray[i]]);
+          i++;
+        }
+        for (var x = 0; x < 25; x++) {
+          var val = $($('.time-button')[x]).html();
+          if( timeValues.indexOf(val) > -1 ){
+            discount_time.push(val);
+          }
+        }
+        if(discount_time.length > 0){
+          $('.current-service-discount').html("Discount is available at " + discount_time.join(', '));
+          $('.current-service-discount').show();
+        }
+      });
       $('.show-time').on('click', function (event) {
         $('.time-button').removeClass('discount-cart-items');
         var d_date = $(this).data('d-date').split('|');
@@ -201,7 +232,7 @@
         $('#book-time').css('top', event.pageY - 0);
         $('#book-time').css('display', 'inline');
         $("#book-time").css("position", "absolute");
-
+        
 
       });
       $(".time-button").click(function(){

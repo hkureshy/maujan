@@ -543,3 +543,6 @@ input[type="search"], textarea {
 .control--radio input:disabled ~ .control__indicator:after {
 	background: #7b7b7b;
 }
+.current-service-discount {
+  display: none;
+}
