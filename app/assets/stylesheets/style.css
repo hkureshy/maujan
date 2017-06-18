@@ -80,7 +80,7 @@
   color: white;
 }
 
-#timer {
+.timer {
   width: 224px;
   background: orange;
 }
@@ -89,6 +89,7 @@
   display: none;
   border: 1px solid orange;
   border-radius: 5px;
+  z-index: 1051;
 }
 
 /* --------------------------------------------------------------- */
@@ -545,4 +546,7 @@ input[type="search"], textarea {
 }
 .current-service-discount {
   display: none;
+}
+.modal-body {
+	height: 275px;
 }

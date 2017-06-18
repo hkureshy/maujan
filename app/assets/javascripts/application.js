@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 // require turbolinks
-//= require bootstrap
+//= require bootstrap.min
 //= require zebra-datepicker/core
 //= require jquery-ui
 //= require_tree .
