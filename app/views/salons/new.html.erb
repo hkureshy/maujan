@@ -19,6 +19,12 @@
         <div class="panel-group margin-top">
           <div class="panel panel-default">
             <div class="panel-heading-blue">Admin Panel</div>
+            <% if notice %>
+              <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                <p id="notice"><%= notice %></p>
+              </div>
+            <% end %>
             <div class="panel-body">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <ul class="nav nav-tabs nav-justified">
@@ -39,7 +45,33 @@
                 <div class="tab-content">
                   <div id="new_form" class="tab-pane fade in active margin-top">
 
-										<%= render 'form' %>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="col-md-6">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>City</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @get_salons.each do |salon| %>
+                                <tr>
+                                  <td><%= salon.salon_name %></td>
+                                  <td><%= salon.city %></td>
+                                  <td><%= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-pencil"), edit_salon_path(salon) %></td>
+                                  <td><%= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-remove"), salon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-md-6">
+										      <%= render 'form' %>
+                        </div>
+                      </div>
+                    </div>
 
 									</div>
 								</div>

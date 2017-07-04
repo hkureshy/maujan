@@ -15,7 +15,8 @@ class SalonsController < ApplicationController
       @salons = @salons.joins(:branches).where("#{Branch.table_name}.area = ?", params[:search_area])
     end
     if params[:search_city] && !params[:search_city].blank?
-      @salons = @salons.joins(:branches).where("#{Branch.table_name}.city = ?", params[:search_city])
+      @salons = @salons.where(city: params[:search_city])
+      @branches = Branch.where('salon_id in (?)', @salons.map(&:id))
     end
   end
 
@@ -30,6 +31,7 @@ class SalonsController < ApplicationController
 
   # GET /salons/new
   def new
+    @get_salons = Salon.all
     @salon = Salon.new
     respond_to do |format|
       format.html
@@ -89,6 +91,6 @@ class SalonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def salon_params
-      params.require(:salon).permit(:salon_name, :salon_img, :salon_email, :owner_email)
+      params.require(:salon).permit(:salon_name, :salon_img, :city)
     end
 end

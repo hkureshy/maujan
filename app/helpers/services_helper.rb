@@ -46,4 +46,12 @@ module ServicesHelper
     end
     time.join('|')
   end
+  
+  def service_discount_percent(service)
+    percent = []
+    service.discounts.each do |d|
+      percent << d.discount_percent
+    end
+    percent.join('|')
+  end
 end

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <div id="center">
@@ -58,7 +58,7 @@
               </div>
               <div class="border-bottom"></div>
               <!-- Modal -->
-              <div id="myModal<%= service.id %>" class="modal fade" role="dialog">
+              <div id="myModal<%= service.id %>" data-id='<%= service.id %>' class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <!-- Modal content-->
                   <div class="modal-content">
@@ -66,12 +66,12 @@
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                       <h4 class="modal-title"><%= service.service_name %></h4>
                     </div>
-                    <div class="modal-body container1">
+                    <div class="modal-body date-container" id="container<%= service.id %>">
                       <i style='display: none;' class="mydatepicker fa fa-calendar" aria-hidden="true"></i> 
                       <%#= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-plus") + " Add", "#", id: "btn-orange", class: "add_cart_item btn btn-default btn-xs button-border", data: { id: service.id } %>
                     <!-- </div>
                     <div class="col-md-1"> -->
-                      <i style='display: none;' class="fa fa-clock-o show-time" aria-hidden="true" data-id="<%= service.id %>" data-d-date="<%= service_discount_date(service) %>" data-d-time="<%= service_discount_time(service) %>"></i>
+                      <i style='display: none;' class="fa fa-clock-o show-time" aria-hidden="true" data-id="<%= service.id %>" data-d-date="<%= service_discount_date(service) %>" data-d-time="<%= service_discount_time(service) %>" data-d-percent="<%= service_discount_percent(service) %>"></i>
                       <div class="book-time">
                         <div class="time-head">
                             <p>
@@ -147,14 +147,6 @@
 </div>
 
 <script type="text/javascript">
-  $('.mydatepicker').Zebra_DatePicker({
-    direction: 1,
-    "show_icon" : false,
-    // container: $('.container1')
-    //onSelect: function(value, date) { 
-    //  alert(value); 
-    //}
-  });
 
   var time = '';
   var i;
@@ -179,6 +171,65 @@
   <%#*});%>
 
   $("document").ready(function () {
+
+      $('.modal').on('show.bs.modal', function (e) {
+          var modal = $(this);
+          setTimeout(function(){ 
+            var container_id = $(modal).data('id');
+            $(modal).find('.mydatepicker').Zebra_DatePicker({
+              direction: 1,
+              "show_icon" : false,
+              always_visible: $('#container'+container_id)
+            });
+            $(modal).find('.mydatepicker').get(0).click();
+            $(modal).find('.show-time').get(0).click();
+            $('.dp_daypicker').on('click', function (event) {
+              $('.current-service-discount').hide();
+              var discount_time = [];
+              var discount_percent = [];
+              var timeValues = [];
+              var i=0;
+              var d_date = $(datepicker).next().data('d-date').split('|');
+              var d_time = $(datepicker).next().data('d-time').split('|');
+              var d_percent = $(datepicker).next().data('d-percent').split('|');
+              
+              var indexArray = $.map(d_date, function(elementOfArray, indexInArray) {
+                      return elementOfArray === datepicker.val() ? indexInArray : null;
+              });
+              
+              while (indexArray.length > i) {
+                timeValues.push(d_time[indexArray[i]]);
+                i++;
+              }
+              for (var x = 0; x < 25; x++) {
+                var val = $($('.time-button')[x]).html();
+                if( timeValues.indexOf(val) > -1 ){
+                  discount_time.push(val);
+                  discount_percent.push(d_percent[d_time.indexOf(val)]);
+                }
+              }
+              if(discount_time.length > 0){
+                var result = [];
+                for (var i=0; i<discount_time.length; i++) {
+                  result.push(discount_time[i]+" ("+discount_percent[i]+"%)");
+                }
+                $('.current-service-discount').html("Discount is available at " + result.join(', '));
+                $('.current-service-discount').show();
+              }
+              // if(date !== '' && date_index > -1){
+                for (var x = 0; x < 25; x++) {
+                  var val = $($('.time-button')[x]).html();
+                  if( timeValues.indexOf(val) > -1 ){
+                    $($('.time-button')[x]).addClass('discount-cart-items');
+                  } else {
+                    $($('.time-button')[x]).removeClass('discount-cart-items');
+                  }
+                }
+              // }
+            });
+          }, 0);
+      });
+
       var date = '';
       var service = '';
       var id = 0;
@@ -187,49 +238,12 @@
       $('.mydatepicker').on('click', function (event) {
         datepicker = $(this);
       });
-      $('.dp_daypicker').on('click', function (event) {
-        $('.current-service-discount').hide();
-        var discount_time = [];
-        var timeValues = [];
-        var i=0;
-        var d_date = $(datepicker).next().data('d-date').split('|');
-        var d_time = $(datepicker).next().data('d-time').split('|');
-        
-        var indexArray = $.map(d_date, function(elementOfArray, indexInArray) {
-                return elementOfArray === datepicker.val() ? indexInArray : null;
-        });
-        
-        while (indexArray.length > i) {
-          timeValues.push(d_time[indexArray[i]]);
-          i++;
-        }
-        for (var x = 0; x < 25; x++) {
-          var val = $($('.time-button')[x]).html();
-          if( timeValues.indexOf(val) > -1 ){
-            discount_time.push(val);
-          }
-        }
-        if(discount_time.length > 0){
-          $('.current-service-discount').html("Discount is available at " + discount_time.join(', '));
-          $('.current-service-discount').show();
-        }
-        // if(date !== '' && date_index > -1){
-          for (var x = 0; x < 25; x++) {
-            var val = $($('.time-button')[x]).html();
-            if( timeValues.indexOf(val) > -1 ){
-              $($('.time-button')[x]).addClass('discount-cart-items');
-            } else {
-              $($('.time-button')[x]).removeClass('discount-cart-items');
-            }
-          }
-        // }
-      });
       $('.show-time').on('click', function (event) {
         $('.time-button').removeClass('discount-cart-items');
         var d_date = $(this).data('d-date').split('|');
         var d_time = $(this).data('d-time').split('|');
         
-        date = $(this).parents('.container1').find('.mydatepicker').val();
+        date = $(this).parents('.date-container').find('.mydatepicker').val();
         service = $(this).parents('.service-height');
         id = $(this).data('id');
         
@@ -272,7 +286,7 @@
           //alert($(this).text());
           //$("#book-time").hide();
           var time = $(this).text();
-          var date = $(this).parents('.container1').find('.mydatepicker').val();
+          var date = $(this).parents('.date-container').find('.mydatepicker').val();
           console.log("time: "+time+" - date: "+date);
           // $('#book-time').hide();
           if(date === ''){
@@ -312,23 +326,6 @@
                 }
             });
           }
-      });
-      $('.modal').on('show.bs.modal', function (e) {
-          var modal = $(this);
-          setTimeout(function(){ 
-            // $(modal).find('.mydatepicker').Zebra_DatePicker({
-            //   direction: 1,
-            //   "show_icon" : false,
-            //   always_visible: $('.container1')
-            //   // container: $('.container1')
-            //   //onSelect: function(value, date) { 
-            //   //  alert(value); 
-            //   //}
-            // });
-            $(modal).find('.mydatepicker').get(0).click();
-            $(modal).find('.show-time').get(0).click();
-            console.log('clicked');
-          }, 0);
       });
   });
     

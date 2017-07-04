@@ -3,11 +3,21 @@
 }
 
 #bg-home {
-	margin-top: 50px;
+	margin-top: 60px;
 }
 
 .show-time {
 	position: relative;
+}
+
+#new_form {
+	padding-top: 10px;
+}
+
+td {
+	color: black;
+	font-weight: 400;
+	font-size: 12px;
 }
 
 /* -------------------- Date Style Override ---------------------- */
@@ -549,4 +559,8 @@ input[type="search"], textarea {
 }
 .modal-body {
 	height: 275px;
+}
+.date-container {
+	width: 82%;
+	margin: auto;
 }

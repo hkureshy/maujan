@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <%= form_for(@salon) do |f| %>
   <% if @salon.errors.any? %>
@@ -23,23 +22,16 @@
   <div class="field form-group">
     <label class="control-label col-sm-4">Salon Image</label>
     <div class="col-sm-6">
-      <%= f.file_field :salon_img %>
+      <%= f.file_field :salon_img, class: "form-control" %>
     </div>
   </div>
 
   <div class="field form-group">
-    <label class="control-label col-sm-4">Salon Email</label>
+    <label class="control-label col-sm-4">City</label>
     <div class="col-sm-6">
       <%= f.text_field :city, class: "form-control input-md bgbray", required: "required" %>
     </div>
   </div>
-
-  <%#*<div class="field form-group">%>
-    <%#*<label class="control-label col-sm-4">Owner Email</label>%>
-    <%#*<div class="col-sm-6">%>
-      <%#= f.text_field :owner_email, class:"form-control input-md bgbray", required: "required" %>
-    <%#*</div>%>
-  <%#*</div>%>
 
   <div class="actions form-group">
     <div class="col-sm-offset-4 col-sm-6">

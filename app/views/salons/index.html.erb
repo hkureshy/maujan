@@ -24,12 +24,12 @@
               </div>
 
               <div class="form-group col-xs-12 col-sm-12 col-md-4">
-                <%= select_tag :search_area, options_for_select(@branches.map(&:area), params[:search_area]), prompt: 'Area', :class => "form-control", :id => "area" %>
+                <%= select_tag :search_city, options_for_select(Salon.all.map(&:city).uniq, params[:search_city]), prompt: 'All Cities', :class => "form-control", :id => "city" %>
               </div>
 
-              <%#*<div class="form-group col-xs-12 col-sm-12 col-md-4">%>
-                <%#= select_tag :search_city, options_for_select(@branches.map(&:city), params[:search_city]), prompt: 'City', :class => "form-control", :id => "city" %>
-              <%#*</div>%>
+              <div class="form-group col-xs-12 col-sm-12 col-md-4">
+                <%= select_tag :search_area, options_for_select(@branches.map(&:area), params[:search_area]), prompt: 'All Areas', :class => "form-control", :id => "area" %>
+              </div>
               
               <br>
             </div>
