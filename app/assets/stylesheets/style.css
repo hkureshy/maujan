@@ -113,6 +113,10 @@ td {
     text-align: center;
 }
 
+.table > thead > tr > th {
+	border: 0px;
+}
+
 .set-height-filers {
 	height: 40px;
 }

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <%= form_for(@stylist_category) do |f| %>
   <% if @stylist_category.errors.any? %>
     <div id="error_explanation">
@@ -15,34 +13,34 @@
 
   <div class="field form-group stylist_cat_salon_field">
     <label class="control-label col-sm-4">Salon Name</label>
-    <div class="col-sm-6">
-      <%= f.select(:salon_id, @salons.collect { |i| [ i.salon_name, i.id ] },{  prompt: "Select Salon"}, {:class => 'form-control input-md bgbray', :id => 'salon_select'} )%>
+    <div class="col-sm-8">
+      <%= f.select(:salon_id, Salon.all.collect { |i| [ i.salon_name, i.id ] },{  prompt: "Select Salon"}, {:class => 'form-control input-md bgbray', :id => 'salon_select'} )%>
     </div>
   </div>
 
   <div class="field form-group stylist_cat_branch_field">
     <label class="control-label col-sm-4">Branch Name</label>
-    <div class="col-sm-6">
-      <%= f.select(:branch_id, @salons.first.branches.collect { |i| [ i.name, i.id ] },{prompt: "Select Branch"}, {:class => 'form-control input-md bgbray'} )%>
+    <div class="col-sm-8">
+      <%= f.select(:branch_id, Salon.first.branches.collect { |i| [ i.name, i.id ] },{prompt: "Select Branch"}, {:class => 'form-control input-md bgbray'} )%>
     </div>
   </div>
 
   <div class="field form-group category_field">
     <label class="control-label col-sm-4">Service Category</label>
-    <div class="col-sm-6">
-      <%= f.select(:service_category_id, @salons.first.branches.first.service_categories.collect { |i| [ i.category, i.id ] },{prompt: "Select Service Category"}, {:class => 'form-control input-md bgbray'} )%>
+    <div class="col-sm-8">
+      <%= f.select(:service_category_id, Salon.first.branches.first.service_categories.collect { |i| [ i.category, i.id ] },{prompt: "Select Service Category"}, {:class => 'form-control input-md bgbray'} )%>
     </div>
   </div>
 
   <div class="field form-group">
     <label class="control-label col-sm-4">Stylist Category</label>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
       <%= f.text_field :category, class: "form-control input-md bgbray" %>
     </div>
   </div>
   
   <div class="actions form-group">
-    <div class="col-sm-offset-4 col-sm-6">
+    <div class="col-sm-offset-4 col-sm-8">
       <%= f.submit "Create", class:"btn btn-block bgblue nextBtn btn-md pull-right margin-top" %>
     </div>
   </div>

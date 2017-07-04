@@ -21,6 +21,7 @@ class ServiceCategoriesController < ApplicationController
 
   # GET /service_categories/new
   def new
+    @get_serviceCat = ServiceCategory.all
     @service_category = ServiceCategory.new
     @salons = Salon.all
     respond_to do |format|

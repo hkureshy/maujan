@@ -1,4 +1,4 @@
-$("#new_form").html("<%= escape_javascript(render partial: 'form', locals: { salons: @salons } ) %>");
+$("#new_form").html("<%= escape_javascript(render partial: 'editor', locals: { salons: @salons } ) %>");
 
 $('#salon').addClass('active');
 $('#branch').removeClass('active');

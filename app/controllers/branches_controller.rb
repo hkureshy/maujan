@@ -20,6 +20,7 @@ class BranchesController < ApplicationController
 
   # GET /branches/new
   def new
+    @get_branches = Branch.all
     @branch = Branch.new
     respond_to do |format|
       format.html
@@ -79,6 +80,6 @@ class BranchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_params
-      params.require(:branch).permit(:salon_id, :city, :area, :name)
+      params.require(:branch).permit(:salon_id, :salon_email, :area, :name)
     end
 end

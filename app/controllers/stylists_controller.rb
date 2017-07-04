@@ -33,6 +33,7 @@ class StylistsController < ApplicationController
 
   # GET /stylists/new
   def new
+    @get_stylist = Stylist.all
     @stylist = Stylist.new
     @salons = Salon.all
     respond_to do |format|

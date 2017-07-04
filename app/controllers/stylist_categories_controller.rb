@@ -28,6 +28,7 @@ class StylistCategoriesController < ApplicationController
 
   # GET /stylist_categories/new
   def new
+    @get_stylistCat = StylistCategory.all
     @stylist_category = StylistCategory.new
     @salons = Salon.all
     respond_to do |format|

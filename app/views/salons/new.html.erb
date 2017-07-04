@@ -45,33 +45,7 @@
                 <div class="tab-content">
                   <div id="new_form" class="tab-pane fade in active margin-top">
 
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="col-md-6">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th>Name</th>
-                                <th>City</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% @get_salons.each do |salon| %>
-                                <tr>
-                                  <td><%= salon.salon_name %></td>
-                                  <td><%= salon.city %></td>
-                                  <td><%= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-pencil"), edit_salon_path(salon) %></td>
-                                  <td><%= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-remove"), salon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                                </tr>
-                              <% end %>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="col-md-6">
-										      <%= render 'form' %>
-                        </div>
-                      </div>
-                    </div>
+										<%= render 'editor' %>
 
 									</div>
 								</div>

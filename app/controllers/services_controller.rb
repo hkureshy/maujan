@@ -73,6 +73,7 @@ class ServicesController < ApplicationController
 
   # GET /services/new
   def new
+    @get_services = Service.all
     @service = Service.new
     @salons = Salon.all
     respond_to do |format|
