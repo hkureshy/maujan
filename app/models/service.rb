@@ -3,6 +3,7 @@ class Service < ActiveRecord::Base
   require 'roo'
 
 	belongs_to :service_category
+	belongs_to :branch
 	has_many :discounts
 	has_many :booking_services
 	has_many :bookings, :through => :booking_services

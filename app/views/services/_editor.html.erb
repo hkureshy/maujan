@@ -15,7 +15,7 @@
               <td><%= service.service_name %></td>
               <td><%= service.price %></td>
               <td><%= service.discount %></td>
-              <td><%= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-pencil"), edit_service_path(service), remote: :true %></td>
+              <td><%= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-pencil"), edit_service_path(service, branch_id: service.branch.id), remote: :true %></td>
               <td><%= link_to content_tag(:span, '', :class=>"glyphicon glyphicon-remove"), service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
