@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   include ServicesHelper
   before_action :set_service, only: [:cart_item, :show, :edit, :update, :destroy]
-  before_action :set_branch, only: [:index, :edit, :update, :destroy]
+  before_action :set_branch, only: [:index, :edit, :update]
   before_action :authenticate_user!, only: [:new, :edit, :show]
 
   # GET /services
@@ -76,6 +76,8 @@ class ServicesController < ApplicationController
     @get_services = Service.all
     @service = Service.new
     @salons = Salon.all
+    @stylists = Stylist.all
+    @a=ServStyl.all
     respond_to do |format|
       format.html
       format.js
@@ -84,8 +86,8 @@ class ServicesController < ApplicationController
 
   # GET /services/1/edit
   def edit
-    @service = Service.new
     @salons = Salon.all
+    @stylists = Stylist.all
   end
 
   # POST /services
@@ -95,6 +97,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
+        ServStyl.create(service_id: @service.id, stylist_id: params[:stylist], price: params[:stylist_price])
         format.html { redirect_to new_salon_path, notice: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
@@ -123,7 +126,7 @@ class ServicesController < ApplicationController
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
+      format.html { redirect_to new_salon_path, notice: 'Service was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

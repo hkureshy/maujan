@@ -49,17 +49,17 @@ class CustomersController < ApplicationController
         end
         
 #        if service_stylist.empty? #if no service for this stylist exists
-        unless existing_booking_for_stylist #if no service for this stylist exists
+#         unless existing_booking_for_stylist #if no service for this stylist exists
           if @customer.save
             booking = Booking.create(customer_id: @customer.id)
             services.each do |service|
               BookingService.create(booking_id: booking.id, service_id: service['id'], booking_date: service['date'], booking_time: service['time'] )
-              ServStyl.create(service_id: service['id'], stylist_id: params[:stylist_id])
+              # ServStyl.create(service_id: service['id'], stylist_id: params[:stylist_id])
             end
 
             BookingMailer.send_mail(@customer).deliver
           end
-        end
+        # end
 
         session[:services_in_cart] = []
         session[:services_in_cart_js] = ''
