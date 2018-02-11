@@ -148,6 +148,17 @@ $(document).on 'change', '#city', (e) ->
     $('#search').parents('form').submit()
     return
 $(document).on 'change', '#area', (e) ->
-    $('#search').parents('form').submit()
-	return
-        
+  $('#search').parents('form').submit()
+  return
+$(document).on 'change', '#name', (e) ->
+  $('#name').parents('form').submit()
+  return
+$(document).on 'change', '#salon', (e) ->
+  $('#salon').parents('form').submit()
+  return
+$(document).on 'change', '#branch', (e) ->
+  $('#branch').parents('form').submit()
+  return
+$(document).on 'change', '#date', (e) ->
+  $('#date').parents('form').submit()
+  return

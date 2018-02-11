@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   include ServicesHelper
   before_action :set_service, only: [:cart_item, :show, :edit, :update, :destroy]
-  before_action :set_branch, only: [:index, :edit, :update]
+  before_action :set_branch, only: [:index, :edit]
   before_action :authenticate_user!, only: [:new, :edit, :show]
 
   # GET /services
@@ -33,7 +33,15 @@ class ServicesController < ApplicationController
     
     @discount_price = []
     @services.each do |serv_disc|
-      @discount_price << serv_disc.discount_price
+      if params[:stylist_id].present?
+        if serv_disc.serv_styls&.where(stylist_id: params[:stylist_id]).first&.price.present?
+          @discount_price << serv_disc.serv_styls&.where(stylist_id: params[:stylist_id]).first&.price
+        else
+          @discount_price << serv_disc.discount_price
+        end
+      else
+        @discount_price << serv_disc.discount_price
+      end
     end
   end
 
@@ -59,6 +67,17 @@ class ServicesController < ApplicationController
     session[:services_in_cart_js] = '' unless session[:services_in_cart_js]
     session[:services_in_cart] << {id: params[:id], date: params[:date], time: params[:time]}
     session[:services_in_cart_js] += ",#{params[:id]}"
+    price = @service.discount_price
+    if params[:stylist_id].present?
+      if @service.serv_styls&.where(stylist_id: params[:stylist_id]).first&.price.present?
+        price = @service.serv_styls&.where(stylist_id: params[:stylist_id]).first&.price
+      else
+        price = @service.discount_price
+      end
+    else
+      price = @service.discount_price
+    end
+    @price = check_discount_on_service(@service.id, params[:date], params[:time]) ? @service.price-(@service.price*((discount.to_f+@service.discount)/100)) : price
     return render partial: "cart_item", locals: { :@service => @service, date: params[:date], time: params[:time], discount: check_discount_on_service(@service.id, params[:date], params[:time])}
   end
   
@@ -112,6 +131,11 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
+        if ServStyl.find_by(service_id: @service.id, stylist_id: params[:stylist])
+          ServStyl.find_by(service_id: @service.id, stylist_id: params[:stylist]).update(price: params[:stylist_price])
+        else
+          ServStyl.create(service_id: @service.id, stylist_id: params[:stylist], price: params[:stylist_price])
+        end
         format.html { redirect_to @service, notice: 'Service was successfully updated.' }
         format.json { render :show, status: :ok, location: @service }
       else

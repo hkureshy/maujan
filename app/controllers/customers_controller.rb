@@ -5,6 +5,19 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
+    @name = @customers.pluck(:name)
+    @salon = Salon.all.pluck(:salon_name)
+    @branch = Branch.all.pluck(:name)
+    if params[:branch] && !params[:branch].blank?
+      @customers = Customer.all
+    end
+    if params[:salon] && !params[:salon].blank?
+      @customers = Customer.all
+    end
+    if params[:name] && !params[:name].blank?
+      @customers = Customer.where(name: params[:name])
+    end
+    @date = [0]
   end
 
   # GET /customers/1

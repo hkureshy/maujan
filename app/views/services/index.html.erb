@@ -42,7 +42,15 @@
                   <% if service.discount > 0 %>
                     <strike><%= service.price %></strike>
                   <% else %>
-                    <%= service.price %>
+                    <% if params[:stylist_id].present? %>
+                      <% if service.serv_styls&.where(stylist_id: params[:stylist_id]).first&.price.present? %>
+                        <%= service.serv_styls.where(stylist_id: params[:stylist_id]).first.price %>
+                      <% else %>
+                        <%= service.price %>
+                      <% end %>
+                    <% else %>
+                      <%= service.price %>
+                    <% end %>
                   <% end %>
                 </div>
                 <div class="col-md-2 font-style-service discount">
@@ -308,7 +316,8 @@
                 data: {
                   date: date,
                   time: time,
-                  discount: discount
+                  discount: discount,
+                  stylist_id: "<%=params[:stylist_id]%>"
                 },
                 success: function(data) {
                   $("#proceed_link").show();

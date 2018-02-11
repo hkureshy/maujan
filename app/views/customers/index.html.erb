@@ -19,6 +19,12 @@
         <div class="panel-group margin-top">
           <div class="panel panel-default">
             <div class="panel-heading-blue">Bookings</div>
+            <%= form_tag customers_path, method: :get do %>
+              <%= select_tag :name, options_for_select(@name, params[:name]), :id => "name" %>
+              <%= select_tag :salon, options_for_select(@salon, params[:salon]), :id => "salon" %>
+              <%= select_tag :branch, options_for_select(@branch, params[:branch]), :id => "branch" %>
+              <%#= select_tag :search_area, options_for_select(@date, params[:search_area]), :id => "date" %>
+            <% end %>
             <div class="panel-body">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 

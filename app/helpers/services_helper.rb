@@ -6,6 +6,21 @@ module ServicesHelper
       0
     end
   end
+
+  def stylist_price_in_cart
+    price = @service.discount_price
+    if params[:stylist_id].present?
+      if @service.serv_styls&.where(stylist_id: params[:stylist_id]).first&.price.present?
+        price = @service.serv_styls&.where(stylist_id: params[:stylist_id]).first&.price
+      else
+        price = @service.discount_price
+      end
+    else
+      price = @service.discount_price
+    end
+    @price = check_discount_on_service(@service.id, params[:date], params[:time]) ? @service.price-(@service.price*((discount.to_f+@service.discount)/100)) : price
+    @price
+  end
   
   def check_discount_on_service(id, date, time)
     service = Service.find(id)
